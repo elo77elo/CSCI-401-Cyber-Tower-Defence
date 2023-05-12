@@ -1,3 +1,4 @@
+// Question class to add question.
 class Question {
     public String question;
     public char answer;
