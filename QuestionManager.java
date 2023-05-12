@@ -2,7 +2,7 @@ import java.util.*;
 
 public class QuestionManager {
 	
-	
+	// This class is to make and add questions.
 	public static Question[] getQuestion() {
 		ArrayList<Question> ret = new ArrayList<Question>();
 		
