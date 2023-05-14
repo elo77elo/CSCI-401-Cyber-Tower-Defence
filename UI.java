@@ -1,11 +1,16 @@
- 
+ /* TODO save number of questions from difficulty in a variable.
+  * TODO keep track of number of question correct
+  * TODO when numbers are equal, players win game
+  * TODO reset board and menus to play again. 
+  */
  
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.util.Random;
+
 import java.util.*;
+
  
 class IOPanel extends JPanel implements ActionListener, MouseListener{
 	public static JTextArea output = new JTextArea("", 10, 75);
@@ -16,6 +21,10 @@ class IOPanel extends JPanel implements ActionListener, MouseListener{
 	String question = null;
 	String ans = null;
 	JLabel nodePicked = null;
+	
+	// QuestionManager Qman = new QuestionManager();
+	Question[] Qarr = QuestionManager.getQuestion();
+	int qLen = Qarr.length;
 	 
 	public IOPanel() {
 		setLayout(new BorderLayout());
@@ -27,7 +36,8 @@ class IOPanel extends JPanel implements ActionListener, MouseListener{
   	  enter.addActionListener(this);
   	  // enter.setMnemonic(KeyEvent.VK_ENTER);
   	   
-  	   
+  	  
+  	  
   	  Box b = Box.createVerticalBox();
   	  Box inEn = Box.createHorizontalBox();
   	   
@@ -229,13 +239,14 @@ class IOPanel extends JPanel implements ActionListener, MouseListener{
   	  // Border border = BorderFactory.createBevelBorder(1, new Color(0, 255, 255), new Color(0, 155, 155));
   	  // nodePicked.setBorder(border);
   	  if (e.getSource() instanceof JLabel ) {
-  		  question = "The organization that Chris works for has disabled automatic updates. What is the most common reason for disabling automatic updates for organizational systems?\r\n"
-  		  		+ "A. To avoid disruption of the work process for office workers\r\n"
-  		  		+ "B. To prevent security breaches due to malicious patches and updates\r\n"
-  		  		+ "C. To avoid issues with problematic patches and updates\r\n"
-  		  		+ "D. All of the above\r\n";
-  		  ans = "c";
+  		  Random rand = new Random();
+  		  Question q = Qarr[rand.nextInt(qLen)];
+  		  question = q.getQuestion();
+  		  ans = String.valueOf(q.getAnswer());
   		  output.setText(question);
+  		  for(String s : q.getSelection()) {
+  			  output.append("\n" + s);
+  		  }
   	  }
 	}
  
