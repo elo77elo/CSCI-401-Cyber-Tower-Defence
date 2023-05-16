@@ -192,6 +192,13 @@ class IOPanel extends JPanel implements ActionListener, MouseListener{
   				 question = null;
   				 ans = null;
   				 QLeft--;
+  				if (QLeft == 0) {
+   				   output.setText("YOU WIN \n*************************************************************************************\n");
+   				   output.append("Please choose an option \n1. Start Game \n 2. Options \n 3. Exit");
+   	  			  	state = "menu";
+   	  			  	input.setText(""); 
+   	  			  	Frame.display.removeAll();
+   			   	}
   			   }
   			   else {
   				 Border border = BorderFactory.createBevelBorder(1, new Color(255, 0, 0), new Color(155, 0, 0));
@@ -199,13 +206,6 @@ class IOPanel extends JPanel implements ActionListener, MouseListener{
   				output.setText("That is not correct! Please choose another node");
   				question = null;
  				 ans = null;
-  			   }
-  			   if (QLeft == 0) {
-  				   output.setText("YOU WIN \n*************************************************************************************\n");
-  				   output.append("Please choose an option \n1. Start Game \n 2. Options \n 3. Exit");
-  	  			  	state = "menu";
-  	  			  	input.setText(""); 
-  	  			  	Frame.display.removeAll();
   			   }
   		  }
   		input.setText("");
